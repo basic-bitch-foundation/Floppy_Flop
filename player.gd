@@ -4,18 +4,21 @@ const SPEED = 100
 const JUMP_FORCE = -300
 const GRAVITY = 600
 
-var score: int = 0
+var score: float = 0.0  
+
+const BIT_TO_KB = 0.1  
+const DAMAGE_PER_SECOND = 10 * BIT_TO_KB  
 
 var on_bad_tile_area: bool = false
-var bad_tile_area_timer: float = 0.0
-const BAD_TILE_DAMAGE_INTERVAL := 1.0 
 
 @onready var tilemap_layer0: TileMapLayer = get_tree().get_current_scene().get_node("TileMap/Layer0")
 @onready var bad_tile_detector = $BadTileDetector
+@onready var score_label = get_tree().get_current_scene().get_node("CanvasLayer/ScoreLabel")
 
 func _ready() -> void:
 	bad_tile_detector.connect("body_entered", Callable(self, "_on_bad_tile_entered"))
 	bad_tile_detector.connect("body_exited", Callable(self, "_on_bad_tile_exited"))
+	_update_score_label()
 
 func _physics_process(delta: float) -> void:
 	
@@ -35,18 +38,13 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-	
 	_check_collectibles(delta)
 
-	
 	if on_bad_tile_area:
-		bad_tile_area_timer += delta
-		if bad_tile_area_timer >= BAD_TILE_DAMAGE_INTERVAL:
-			score -= 1
-			bad_tile_area_timer = 0.0
-			print("Ouch! On bad tile area! Score:", score)
-	else:
-		bad_tile_area_timer = 0.0
+		var damage = DAMAGE_PER_SECOND * delta
+		score = max(score - damage, 0)
+		_update_score_label()
+		print("On bad tile! Deducted:", damage, "New score:", score)
 
 func _check_collectibles(_delta: float) -> void:
 	if tilemap_layer0 == null:
@@ -67,8 +65,9 @@ func _check_collectibles(_delta: float) -> void:
 			var t = tile_data.get_custom_data("type")
 
 			if t == "collectible":
-				score += 1
+				score += 5 * BIT_TO_KB  
 				tilemap_layer0.set_cell(tile_coords, -1)
+				_update_score_label()
 				print("Collected! Score:", score)
 
 func _on_bad_tile_entered(_body: Node) -> void:
@@ -78,3 +77,6 @@ func _on_bad_tile_entered(_body: Node) -> void:
 func _on_bad_tile_exited(_body: Node) -> void:
 	on_bad_tile_area = false
 	print("Exited bad tile area")
+
+func _update_score_label() -> void:
+	score_label.text = "%0.2f KB" % score
