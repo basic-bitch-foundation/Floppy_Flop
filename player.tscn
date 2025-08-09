@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpcyf3e2cpyqe"]
+[gd_scene load_steps=5 format=3 uid="uid://dpcyf3e2cpyqe"]
 
 [ext_resource type="Texture2D" uid="uid://cvp42xnjodorv" path="res://icon.svg" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dsa1bolk24w3o" path="res://player.gd" id="1_onrkg"]
@@ -6,11 +6,25 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(118, 120)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
+size = Vector2(104, 12)
+
 [node name="player" type="CharacterBody2D"]
+z_index = 1
+collision_mask = 6
+input_pickable = true
 script = ExtResource("1_onrkg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_4flbx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 1)
 shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="BadTileDetector" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BadTileDetector"]
+position = Vector2(1, 66)
+shape = SubResource("RectangleShape2D_hqtel")
