@@ -4,16 +4,18 @@ const SPEED = 100
 const JUMP_FORCE = -300
 const GRAVITY = 600
 
-var score: float = 0.0  
+var score: float = 0.0
 
-const BIT_TO_KB = 0.1  
-const DAMAGE_PER_SECOND = 10 * BIT_TO_KB  
+const BIT_TO_KB = 0.1
+const DAMAGE_PER_SECOND = 10 * BIT_TO_KB
 
 var on_bad_tile_area: bool = false
 
 @onready var tilemap_layer0: TileMapLayer = get_tree().get_current_scene().get_node("TileMap/Layer0")
 @onready var bad_tile_detector = $BadTileDetector
 @onready var score_label = get_tree().get_current_scene().get_node("CanvasLayer/ScoreLabel")
+@onready var camera: Camera2D = get_node("/root/Game/Camera2D")
+
 
 func _ready() -> void:
 	bad_tile_detector.connect("body_entered", Callable(self, "_on_bad_tile_entered"))
@@ -21,7 +23,7 @@ func _ready() -> void:
 	_update_score_label()
 
 func _physics_process(delta: float) -> void:
-	
+	# Gravity
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 	else:
@@ -46,6 +48,24 @@ func _physics_process(delta: float) -> void:
 		_update_score_label()
 		print("On bad tile! Deducted:", damage, "New score:", score)
 
+	_check_player_in_camera()
+
+func _check_player_in_camera() -> void:
+	if camera == null:
+		return
+
+	var viewport_size = get_viewport().get_visible_rect().size
+	var zoom = camera.zoom
+	var half_size = (viewport_size * zoom) * 0.299
+	var top_left = camera.global_position - half_size
+	var visible_rect = Rect2(top_left, half_size * 2)
+
+	if global_position.y < visible_rect.position.y:
+		if score != 0:
+			score = 0
+			_update_score_label()
+			print("Player went above camera view! Score reset to 0")
+
 func _check_collectibles(_delta: float) -> void:
 	if tilemap_layer0 == null:
 		return
@@ -65,7 +85,7 @@ func _check_collectibles(_delta: float) -> void:
 			var t = tile_data.get_custom_data("type")
 
 			if t == "collectible":
-				score += 5 * BIT_TO_KB  
+				score += 5 * BIT_TO_KB
 				tilemap_layer0.set_cell(tile_coords, -1)
 				_update_score_label()
 				print("Collected! Score:", score)
