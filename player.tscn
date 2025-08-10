@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://8k8duyflb7ml" path="res://image-removebg-preview.png" id="2_onrkg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
-size = Vector2(141, 129)
+size = Vector2(140.5, 133.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
-size = Vector2(140, 91)
+size = Vector2(126, 85)
 
 [node name="player" type="CharacterBody2D"]
 z_index = 1
@@ -21,12 +21,12 @@ scale = Vector2(0.44, 0.524549)
 texture = ExtResource("2_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3, -1)
+position = Vector2(2.75, 1.25)
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="BadTileDetector" type="Area2D" parent="."]
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BadTileDetector"]
-position = Vector2(5, 32.5)
+position = Vector2(5, 29.5)
 shape = SubResource("RectangleShape2D_hqtel")

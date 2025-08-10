@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://bmjy206pr2ng6"]
+[gd_scene load_steps=14 format=4 uid="uid://bmjy206pr2ng6"]
 
 [ext_resource type="Texture2D" uid="uid://dvr6d0c572po4" path="res://font-removebg-preview.png" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://dn8j11t1x3tb8" path="res://game.gd" id="1_fc0e3"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://blykiajknk4ts" path="res://tile_map.gd" id="2_ryrav"]
 [ext_resource type="PackedScene" uid="uid://dpcyf3e2cpyqe" path="res://player.tscn" id="3_feb5d"]
 [ext_resource type="Script" uid="uid://ioujlfmqjsho" path="res://camera_2d.gd" id="6_eow3j"]
+[ext_resource type="Texture2D" uid="uid://dchrkgpwqsvg8" path="res://Score BG.png" id="6_j5wjh"]
+[ext_resource type="Texture2D" uid="uid://behvix373ckn3" path="res://Bacgroun Floppy flop.png" id="7_eow3j"]
+[ext_resource type="FontFile" uid="uid://exl1nyiawgpp" path="res://Minecraft.ttf" id="7_vef74"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_feb5d"]
 texture = ExtResource("1_e2o6t")
@@ -990,16 +993,34 @@ position = Vector2(-369, -3926)
 scale = Vector2(0.3, 0.3)
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
-position = Vector2(-369, -3926)
+position = Vector2(-369, -3927)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="ScoreBG" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 0.0148264
+anchor_bottom = 0.0133951
+offset_right = 836.92
+offset_bottom = 425.32
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_j5wjh")
+
 [node name="ScoreLabel" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
+z_index = 2
+offset_left = 56.0
+offset_top = 41.0
+offset_right = 1324.0
+offset_bottom = 749.0
+theme_override_fonts/font = ExtResource("7_vef74")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-70, -3976)
 scale = Vector2(0.3, 0.3)
 zoom = Vector2(1.39, 1.39)
 script = ExtResource("6_eow3j")
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D"]
+position = Vector2(49.9999, 875.333)
+scale = Vector2(3.04232, 2.15972)
+texture = ExtResource("7_eow3j")
