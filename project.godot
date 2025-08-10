@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Floppy Flop"
-run/main_scene="uid://bmjy206pr2ng6"
+run/main_scene="uid://biqcg18v7bo8u"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://Global.gd"
 
 [editor_plugins]
 
