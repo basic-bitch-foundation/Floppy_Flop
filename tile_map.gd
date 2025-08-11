@@ -6,7 +6,7 @@ func _ready():
 	var left_tile_x0 = used_rect0.position.x
 	var right_tile_x0 = used_rect0.position.x + used_rect0.size.x - 1
 	
-	var tileset0 = layer0.tile_set  # Use tile_set property
+	var tileset0 = layer0.tile_set  
 	var tile_size0 = tileset0.get_tile_size()
 	
 	var left_wall_x0 = layer0.global_position.x + left_tile_x0 * tile_size0.x
@@ -19,7 +19,7 @@ func _ready():
 	var left_tile_x1 = used_rect1.position.x
 	var right_tile_x1 = used_rect1.position.x + used_rect1.size.x - 1
 	
-	var tileset1 = layer1.tile_set  # Use tile_set property
+	var tileset1 = layer1.tile_set  
 	var tile_size1 = tileset1.get_tile_size()
 	
 	var left_wall_x1 = layer1.global_position.x + left_tile_x1 * tile_size1.x

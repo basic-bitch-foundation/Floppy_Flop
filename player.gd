@@ -29,6 +29,14 @@ var restart_pending: bool = false
 @onready var sfx_restart: AudioStreamPlayer = $SFX_Restart
 @onready var bgm: AudioStreamPlayer = $BGM
 
+# Win condition vars
+@export var win_sprite_path: NodePath
+@onready var win_sprite: Sprite2D = null
+
+@export var main_menu_scene: PackedScene
+
+const DEATH_TOP_MARGIN = 20.0  # margin so player doesn’t die immediately on top edge
+
 func _ready() -> void:
 	bad_tile_detector.connect("body_entered", Callable(self, "_on_bad_tile_entered"))
 	bad_tile_detector.connect("body_exited", Callable(self, "_on_bad_tile_exited"))
@@ -44,7 +52,6 @@ func _ready() -> void:
 	restart_timer.connect("timeout", Callable(self, "_on_restart_timer_timeout"))
 	add_child(restart_timer)
 
-
 	if bgm:
 		bgm.stop() 
 
@@ -52,6 +59,11 @@ func _ready() -> void:
 		sfx_restart.play() 
 
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), not Global.sound_on)
+
+	if win_sprite_path != null:
+		win_sprite = get_node(win_sprite_path)
+	else:
+		print("Warning: Win sprite path not assigned!")
 
 func _physics_process(delta: float) -> void:
 	
@@ -87,8 +99,28 @@ func _physics_process(delta: float) -> void:
 		var damage = DAMAGE_PER_SECOND * delta
 		score = max(score - damage, 0)
 		_update_score_label()
+		if sfx_damage and not sfx_damage.playing:
+			sfx_damage.play()
+		
+		if score == 0:
+			if sfx_lose:
+				sfx_lose.play()
+			_start_restart_timer()
+	else:
+		if sfx_damage and sfx_damage.playing:
+			sfx_damage.stop()
 
 	_check_lose_conditions()
+
+	# Win condition check
+	if win_sprite != null:
+		var distance_to_win = global_position.distance_to(win_sprite.global_position)
+		if distance_to_win < 32.0:
+			if score > 0:
+				_win_game()
+			else:
+				print("No data collected, restarting...")
+				get_tree().reload_current_scene()
 
 func _check_lose_conditions() -> void:
 	if camera == null:
@@ -102,7 +134,7 @@ func _check_lose_conditions() -> void:
 	var top_left = camera.global_position - half_size
 	var visible_rect = Rect2(top_left, half_size * 2)
 
-	if global_position.y < visible_rect.position.y or score == 0:
+	if global_position.y < visible_rect.position.y - DEATH_TOP_MARGIN:
 		if sfx_lose:
 			sfx_lose.play()
 		_start_restart_timer()
@@ -141,13 +173,17 @@ func _check_collectibles(_delta: float) -> void:
 
 func _on_bad_tile_entered(_body: Node) -> void:
 	on_bad_tile_area = true
-	if sfx_damage and not sfx_damage.playing:
-		sfx_damage.play()
 
 func _on_bad_tile_exited(_body: Node) -> void:
 	on_bad_tile_area = false
-	if sfx_damage and sfx_damage.playing:
-		sfx_damage.stop()
 
 func _update_score_label() -> void:
 	score_label.text = "%0.2f KB" % score
+
+func _win_game():
+	print("You win! Returning to Main Menu...")
+	if main_menu_scene != null:
+		get_tree().change_scene_to_packed(main_menu_scene)
+	else:
+		print("Main menu scene not assigned! Restarting current scene.")
+		get_tree().reload_current_scene()

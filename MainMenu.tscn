@@ -109,11 +109,11 @@ theme_override_fonts/normal_font = ExtResource("10_31qfy")
 bbcode_enabled = true
 text = "[center][b][u]STORY TIME[/u][/b][/center]
 
-You are a brave little bug trapped inside a failing floppy disk. After a failed attempt to save [b]GTA V[/b], the disk is rapidly corrupting from above, spreading dangerous [color=red]corruption paths[/color] that threaten to destroy all the data inside.
+You are a brave little bug trapped inside a failing floppy disk. After a failed attempt to save [b]Big Cat Pictures[/b], the disk is rapidly corrupting from above, spreading dangerous [color=cyan]corruption paths[/color] that threaten to destroy all the data inside.
 
 The corruption is slowly creeping downward, forcing you to keep moving forward—if you fall behind, the corruption will catch you and end your run.
 
-Your mission: collect scattered pieces of valuable data before the corruption overtakes everything. Avoid the spreading corruption (marked in red), and gather at least [b]50 KB[/b] of data fragments. Only then can you reach the final safe tile and escape the dying disk.
+Your mission: collect scattered pieces of valuable data before the corruption overtakes everything. Avoid the spreading corruption (marked in red), and gather at least [b]>0 KB[/b] of data fragments. Only then can you reach the final safe tile and escape the dying disk.
 
 [b][color=green]But beware—the corruption spreads faster than you think! You must move quickly and smartly.[/color][/b]
 
