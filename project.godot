@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Floppy Flop"
+config/name="Floppy_Flop"
 run/main_scene="uid://biqcg18v7bo8u"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://8k8duyflb7ml"
 
 [autoload]
 

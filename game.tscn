@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=4 uid="uid://bmjy206pr2ng6"]
+[gd_scene load_steps=21 format=4 uid="uid://bmjy206pr2ng6"]
 
 [ext_resource type="Texture2D" uid="uid://dvr6d0c572po4" path="res://font-removebg-preview.png" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://dn8j11t1x3tb8" path="res://game.gd" id="1_fc0e3"]
 [ext_resource type="Texture2D" uid="uid://jxy87wj4tg0t" path="res://font_16seg_led_red_384x256px-removebg-preview (1).png" id="1_feb5d"]
 [ext_resource type="Script" uid="uid://blykiajknk4ts" path="res://tile_map.gd" id="2_ryrav"]
 [ext_resource type="PackedScene" uid="uid://dpcyf3e2cpyqe" path="res://player.tscn" id="3_feb5d"]
+[ext_resource type="PackedScene" uid="uid://biqcg18v7bo8u" path="res://MainMenu.tscn" id="6_80cx4"]
 [ext_resource type="Script" uid="uid://ioujlfmqjsho" path="res://camera_2d.gd" id="6_eow3j"]
 [ext_resource type="Texture2D" uid="uid://dchrkgpwqsvg8" path="res://Score BG.png" id="6_j5wjh"]
 [ext_resource type="AudioStream" uid="uid://cx3sf35hs0w7q" path="res://game sfx/bad tile.ogg" id="7_215e1"]
@@ -1005,6 +1006,7 @@ tile_set = SubResource("TileSet_7jktm")
 position = Vector2(-92, 2081)
 scale = Vector2(0.3, 0.3)
 win_sprite_path = NodePath("../WinTile")
+main_menu_scene = ExtResource("6_80cx4")
 
 [node name="BGM" type="AudioStreamPlayer" parent="player"]
 stream = ExtResource("10_mfdv2")

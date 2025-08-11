@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bkeanry7u6bci"
+path="res://.godot/imported/startsf.ogg-df9dbc1f904f57f9dee739dea2d7953b.oggvorbisstr"
+
+[deps]
+
+source_file="res://game sfx/startsf.ogg"
+dest_files=["res://.godot/imported/startsf.ogg-df9dbc1f904f57f9dee739dea2d7953b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

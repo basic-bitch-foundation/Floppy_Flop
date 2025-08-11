@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://doqmxa5nl0387"
+path="res://.godot/imported/jumpi.ogg-001de87f6c3adcd777ed2e640f6d4570.oggvorbisstr"
+
+[deps]
+
+source_file="res://game sfx/jumpi.ogg"
+dest_files=["res://.godot/imported/jumpi.ogg-001de87f6c3adcd777ed2e640f6d4570.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

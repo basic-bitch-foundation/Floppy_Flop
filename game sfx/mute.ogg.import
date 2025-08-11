@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bufo0n7hehykl"
+path="res://.godot/imported/mute.ogg-a3995612601ad21bed926afa9a69edd6.oggvorbisstr"
+
+[deps]
+
+source_file="res://game sfx/mute.ogg"
+dest_files=["res://.godot/imported/mute.ogg-a3995612601ad21bed926afa9a69edd6.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

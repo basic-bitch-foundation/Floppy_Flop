@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bji2d8n1bvt6d"
+path="res://.godot/imported/continous.ogg-817301621a8f57048fc9271bf53729fd.oggvorbisstr"
+
+[deps]
+
+source_file="res://game sfx/continous.ogg"
+dest_files=["res://.godot/imported/continous.ogg-817301621a8f57048fc9271bf53729fd.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

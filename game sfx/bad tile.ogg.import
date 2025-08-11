@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cx3sf35hs0w7q"
+path="res://.godot/imported/bad tile.ogg-dd0ed7621514c96e385ce73c03aa92fc.oggvorbisstr"
+
+[deps]
+
+source_file="res://game sfx/bad tile.ogg"
+dest_files=["res://.godot/imported/bad tile.ogg-dd0ed7621514c96e385ce73c03aa92fc.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
